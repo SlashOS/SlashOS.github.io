@@ -19,8 +19,7 @@ jobs:
 
     - name: Remove Mobirise ads from HTML files
       run: |
-        find . -name "*.html" -exec sed -i '/<section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;">/,/<\/section>/d' {} \;
-
+        find . -type f -name "*.html" -exec sed -i '/<section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;/{:a;N;/<\/section>/!ba;d}' {} +
     - name: Commit changes
       run: |
         git config --local user.name "GitHub Action"
