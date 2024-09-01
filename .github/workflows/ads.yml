@@ -17,9 +17,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
     - name: Remove Mobirise ads from HTML files
       run: |
-        find . -type f -name "*.html" -exec sed -i '/<section class="display-7" style.*<\/section>/d' {} \;
+        python remove.py
+
     - name: Commit changes
       run: |
         git config --local user.name "GitHub Action"
